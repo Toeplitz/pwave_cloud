@@ -20,3 +20,6 @@ RUN cd /var/local/git/grpc && \
 RUN cd /var/local/git/grpc/third_party/protobuf && \
     make && make install && make clean
 
+RUN mkdir ~/git && cd ~/git && git clone git@github.com:Toeplitz/pwave_cloud.git
+RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make && ./server
+
