@@ -1,5 +1,8 @@
 FROM ubuntu:16.04
 
+MAINTAINER Martin Sarajaervi "balony@gmail.com"
+
+
 RUN apt-get update && apt-get install -y \
   build-essential autoconf libtool \
   git \
@@ -22,9 +25,12 @@ RUN cd /var/local/git/grpc/third_party/protobuf && \
     make && make install && make clean
 
 RUN mkdir ~/.ssh
-ADD id_rsa /root/.ssh/id_rsa
+#ADD id_rsa /root/.ssh/id_rsa
+#RUN cat $GITHUB_SSH_KEY > /root/.ssh/id_rsa
 
 RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+RUN echo $GITHUB_SSH_KEY > /root/ssh/id_rsa
+RUN cat /root/.ssh/id_rsa
 RUN mkdir ~/git && cd ~/git && git clone git@github.com:Toeplitz/pwave_cloud.git
 RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make 
 
