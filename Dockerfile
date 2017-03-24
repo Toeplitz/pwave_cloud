@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y \
   build-essential autoconf libtool \
   git \
   pkg-config \
+  cmake \
   && apt-get clean
 
 ENV GRPC_RELEASE_TAG v1.0.0
@@ -20,6 +21,12 @@ RUN cd /var/local/git/grpc && \
 RUN cd /var/local/git/grpc/third_party/protobuf && \
     make && make install && make clean
 
+RUN mkdir ~/.ssh
+ADD id_rsa /root/.ssh/id_rsa
+
+RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
 RUN mkdir ~/git && cd ~/git && git clone git@github.com:Toeplitz/pwave_cloud.git
-RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make && ./server
+RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make 
+
+ENTRYPOINT ["/root/git/pwave_cloud/build/server"]
 
