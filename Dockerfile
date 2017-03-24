@@ -28,8 +28,8 @@ RUN mkdir ~/.ssh
 #ADD id_rsa /root/.ssh/id_rsa
 #RUN cat $GITHUB_SSH_KEY > /root/.ssh/id_rsa
 
-RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
-RUN mkdir ~/git && cd ~/git && git clone git@github.com:Toeplitz/pwave_cloud.git
+#RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+RUN mkdir ~/git && cd ~/git && git clone https://github.com/Toeplitz/pwave_cloud.git
 RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make 
 
 ENTRYPOINT ["/root/git/pwave_cloud/build/server"]
