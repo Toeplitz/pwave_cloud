@@ -17,16 +17,33 @@ using grpc::Status;
 using pwave::HelloRequest;
 using pwave::HelloReply;
 using pwave::Greeter;
+using pwave::Raytrace;
+using pwave::ray_config_t;
+using pwave::ray_t;
 
 // Logic and data behind the server's behavior.
-class GreeterServiceImpl final : public Greeter::Service {
-  Status SayHello(ServerContext* context, const HelloRequest* request,
-                  HelloReply* reply) override {
+class GreeterServiceImpl final : public Greeter::Service 
+{
+
+  Status SayHello(ServerContext* context, const HelloRequest* request, HelloReply* reply) override 
+  {
     std::string prefix("Hello ");
     reply->set_message(prefix + request->name());
     return Status::OK;
   }
+
 };
+
+
+class RaytraceServiceImpl final : public Raytrace::Service 
+{
+  Status compute(ServerContext* context, const ray_config_t *request, ray_t *reply) override 
+  {
+    return Status::OK;
+  }
+
+};
+
 
 void RunServer() {
   std::string server_address("0.0.0.0:50051");

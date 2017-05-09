@@ -13,6 +13,7 @@ service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
+
 // The request message containing the user's name.
 message HelloRequest {
   string name = 1;
@@ -22,3 +23,18 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
 }
+
+
+message ray_t {
+  string test = 1;
+}
+
+message ray_config_t {
+  string test = 1;
+}
+
+service Raytrace {
+
+  rpc compute(ray_config_t) returns (ray_t);
+
+};
