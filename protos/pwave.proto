@@ -1,9 +1,9 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "io.grpc.examples.pwave";
-option java_outer_classname = "HelloWorldProto";
-option objc_class_prefix = "HLW";
+option java_package = "io.grpc.pwave";
+option java_outer_classname = "Pwave";
+option objc_class_prefix = "PW";
 
 package pwave;
 
