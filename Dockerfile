@@ -32,5 +32,5 @@ RUN mkdir ~/.ssh
 RUN mkdir ~/git && cd ~/git && git clone https://github.com/Toeplitz/pwave_cloud.git
 RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make 
 
-ENTRYPOINT ["/root/git/pwave_cloud/build/server"]
+ENTRYPOINT ["/root/git/pwave_cloud/build/pwave_server"]
 
