@@ -24,4 +24,12 @@ LOGGING:
 docker logs pwave_cloud -f
 
 
+KUBERNETES:
+# https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
+
+
+kubectl describe nodes dwarf
+
+kubectl get pods --all-namespaces
+
 
