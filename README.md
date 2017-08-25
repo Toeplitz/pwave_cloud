@@ -28,8 +28,18 @@ KUBERNETES:
 # https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
 
+# ADMIN 
 kubectl describe nodes dwarf
 
 kubectl get pods --all-namespaces
+
+# STARTING POD AND SERVICE
+kubectl run --image=pwave_image pwave_cloud --port=50051 
+kubectl expose deployment pwave_cloud --port=8080 --name=pwave-http
+
+kubectl get po
+
+kubectl exec -ti nginx-app-5jyvm -- /bin/sh    
+kubectl logs -f nginx-app-zibvs
 
 
