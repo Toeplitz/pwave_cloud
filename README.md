@@ -48,4 +48,7 @@ kubectl get po
 kubectl exec -ti nginx-app-5jyvm -- /bin/sh    
 kubectl logs -f nginx-app-zibvs
 
+# Guide for auth with GCR
+https://ryaneschinger.com/blog/using-google-container-registry-gcr-with-minikube/
+
 

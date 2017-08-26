@@ -29,14 +29,15 @@ RUN mkdir ~/.ssh
 #RUN cat $GITHUB_SSH_KEY > /root/.ssh/id_rsa
 
 #RUN ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
-#RUN mkdir ~/git && cd ~/git && git clone https://github.com/Toeplitz/pwave_cloud.git
-#RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make 
-RUN rm -rf /root/pwave_cloud
-RUN mkdir /root/pwave_cloud
-COPY . /root/pwave_cloud
-RUN cd /root/pwave_cloud && cmake . && make 
-RUN mkdir /pwave_volume
-RUN df -h
+RUN mkdir ~/git && cd ~/git && git clone https://github.com/Toeplitz/pwave_cloud.git
+RUN cd ~/git/pwave_cloud && mkdir build && cd build && cmake .. && make 
+
+#RUN rm -rf /root/pwave_cloud
+#RUN mkdir /root/pwave_cloud
+#COPY . /root/pwave_cloud
+#RUN cd /root/pwave_cloud && cmake . && make 
+#RUN mkdir /pwave_volume
+#RUN df -h
 
 ENTRYPOINT ["/root/pwave_cloud/pwave_server"]
 
