@@ -33,9 +33,15 @@ kubectl describe nodes dwarf
 
 kubectl get pods --all-namespaces
 
+# ON NODE
+  kubeadm join --token e8a09f.c4dfbe610c1a2634 192.168.1.200:6443
+
+
 # STARTING POD AND SERVICE
-kubectl run --image=pwave_image pwave_cloud --port=50051 
-kubectl expose deployment pwave_cloud --port=8080 --name=pwave-http
+kubectl run --image=pwave-image pwave-cloud --port=50051 --generator=run-pod/v1
+kubectl expose deployment pwave-cloud --port=8080 --name=pwave-http
+
+kubectl describe services pwave-http
 
 kubectl get po
 
