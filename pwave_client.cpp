@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
   /* GreeterClient greeter(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials())); */
   GreeterClient greeter(grpc::CreateChannel("192.168.1.200:30080", grpc::InsecureChannelCredentials()));
 
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 1000; i++) {
     std::string user("world");
     std::string reply = greeter.SayHello(user);
     std::cout << reply << std::endl;

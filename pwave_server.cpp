@@ -41,7 +41,13 @@ class GreeterServiceImpl final : public Greeter::Service
       info = "[unknown]";
     }
 
-    std::string prefix("Hello");
+    float foo = 0.0;
+
+    for (auto n = 0; n < 100000000; n++) {
+      foo += exp(- 3.14f * n);
+    }
+
+    std::string prefix("Hello" + std::to_string(foo));
     reply->set_message(info + prefix + request->name());
     printf("said hello\n");
     return Status::OK;
