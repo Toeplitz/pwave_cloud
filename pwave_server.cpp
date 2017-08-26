@@ -27,8 +27,10 @@ class GreeterServiceImpl final : public Greeter::Service
 
   Status SayHello(ServerContext* context, const HelloRequest* request, HelloReply* reply) override 
   {
-    std::string prefix("Hello from kube ");
-    reply->set_message(prefix + request->name());
+		std::string pod_name = std::string(std::getenv("MY_POD_NAME")));
+
+    std::string prefix(": Hello");
+    reply->set_message(pod_name + prefix + request->name());
     printf("said hello\n");
     return Status::OK;
   }
