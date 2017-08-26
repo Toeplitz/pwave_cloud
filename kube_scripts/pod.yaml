@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pwave-cloud
+  labels:
+    app: pwave-cloud
+spec:
+  template:
+    metadata:
+      labels:
+        app: pwave-cloud
+    spec:
+      containers:
+      - image: toeplitz/pwave_cloud
+        name: pwave-cloud
+        ports:
+         - name: http
+           containerPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pwave-cloud
+  labels:
+    app: pwave-cloud
+spec:
+  ports:
+  - nodePort: 30080
+    port: 50051
+    protocol: TCP
+    targetPort: 50051    
+  selector:
+    app: pwave-cloud
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}   

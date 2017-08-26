@@ -34,7 +34,7 @@ kubectl describe nodes dwarf
 kubectl get pods --all-namespaces
 
 # ON NODE
-  kubeadm join --token e8a09f.c4dfbe610c1a2634 192.168.1.200:6443
+kubeadm join --token e8a09f.c4dfbe610c1a2634 192.168.1.200:6443
 
 
 # STARTING POD AND SERVICE
