@@ -27,10 +27,22 @@ class GreeterServiceImpl final : public Greeter::Service
 
   Status SayHello(ServerContext* context, const HelloRequest* request, HelloReply* reply) override 
   {
-		std::string pod_name = std::string(std::getenv("MY_POD_NAME"));
+		const char *my_pod_name = std::getenv("MY_POD_NAME");
+		const char *my_node_name = std::getenv("MY_NODE_NAME");
 
-    std::string prefix(": Hello");
-    reply->set_message(pod_name + prefix + request->name());
+    std::string info;
+
+    if (my_pod_name && my_node_name)  {
+      std::string str_pod_name(my_pod_name);
+      std::string str_node_name(my_node_name);
+
+      info = "[" + str_node_name + ":" + str_pod_name + "] ";
+    } else {
+      info = "[unknown]";
+    }
+
+    std::string prefix("Hello");
+    reply->set_message(info + prefix + request->name());
     printf("said hello\n");
     return Status::OK;
   }
