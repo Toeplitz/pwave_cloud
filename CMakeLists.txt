@@ -40,7 +40,18 @@ add_executable(pwave_client
     ${PROTO_SRCS}
     ${GRPC_SRCS}
 )
+
+add_executable(pwave_client_async
+    ${CMAKE_CURRENT_SOURCE_DIR}/pwave_client_async.cpp
+    ${PROTO_SRCS}
+    ${GRPC_SRCS}
+)
 target_link_libraries(pwave_client
+    gRPC::grpc++_reflection
+    protobuf::libprotobuf
+)
+
+target_link_libraries(pwave_client_async
     gRPC::grpc++_reflection
     protobuf::libprotobuf
 )
