@@ -12,24 +12,28 @@ spec:
         app: pwave-cloud
     spec:
       containers:
-      - image: gcr.io/pwave-cloud/github-toeplitz-pwave-cloud:c147e90cb3da91767ee9785cc384fd4830c7fb3b
+      - image: gcr.io/pwave-cloud/github-toeplitz-pwave-cloud:d6e6893289a3bfe67f49fcd8e41fde4a98c3d475
         name: pwave-cloud
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
         ports:
          - name: http
            containerPort: 50051
-env:
-  - name: MY_POD_NAME
-    valueFrom:
-      fieldRef:
-        fieldPath: metadata.name
-  - name: MY_POD_NAMESPACE
-    valueFrom:
-      fieldRef:
-        fieldPath: metadata.namespace
-  - name: MY_POD_IP
-    valueFrom:
-      fieldRef:
-        fieldPath: status.podIP
 ---
 apiVersion: v1
 kind: Service
