@@ -7,7 +7,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 50051
+  - port: 80
     # This port needs to be available on all nodes in the cluster
     nodePort: 30301
     targetPort: 50051
@@ -65,4 +65,3 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.podIP
-#  loadBalancer: {}   

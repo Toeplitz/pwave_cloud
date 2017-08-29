@@ -8,9 +8,15 @@
 #kubectl delete ing pwave-ingress
 
 #kubectl delete -f http-svc.yaml
+#kubectl delete -f pwave-cloud.yaml
+#kubectl delete -f gce-tls-ingress.yaml
+#kubectl delete -f gce-ingress-controller.yaml
+
+kubectl delete -f nginx-tcp-ingress-controller.yaml
+kubectl delete -f nginx-tcp-ingress-configmap.yaml
+#kubectl delete -f http-svc.yaml
 kubectl delete -f pwave-cloud.yaml
-kubectl delete -f gce-tls-ingress.yaml
-kubectl delete -f gce-ingress-controller.yaml
+
 
 
 kubectl get po
