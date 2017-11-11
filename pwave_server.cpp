@@ -69,6 +69,7 @@ class RaytraceServiceImpl final : public Raytrace::Service
 void RunServer() {
   const char *http_proxy = std::getenv("http_proxy");
   std::string server_address(http_proxy);
+  server_address.erase(0,5);
   GreeterServiceImpl service;
 
   ServerBuilder builder;
