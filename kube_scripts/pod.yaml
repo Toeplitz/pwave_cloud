@@ -5,14 +5,14 @@ metadata:
   labels:
     app: pwave-cloud
 spec:
-#  replicas: 50
+  replicas: 4
   template:
     metadata:
       labels:
         app: pwave-cloud
     spec:
       containers:
-      - image: gcr.io/pwave-cloud/github-toeplitz-pwave-cloud:22ee3220248c8f924cfb6696ee102f70eab77197
+      - image: gcr.io/pwave-cloud/github-toeplitz-pwave-cloud:6cc63aed4e6aa7cef3f352cd0769f7c273a37d48
         name: pwave-cloud
         env:
           - name: MY_POD_NAME
@@ -34,36 +34,32 @@ spec:
         ports:
          - name: http
            containerPort: 50051
+#---
+#apiVersion: autoscaling/v1
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: pwave-cloud
+#  namespace: default
+#spec:
+#  maxReplicas: 30
+#  minReplicas: 4
+#  scaleTargetRef:
+#    apiVersion: v1
+#    kind: Deployment
+#    name: pwave-cloud
 ---
-apiVersion: v1
-kind: ReplicationController
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  name: pwave-cloud
+ name: pwave-ingress
 spec:
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        run: pwave-cloud
-    spec:
-      containers:
-      - name: pwave-cloud
-        image: gcr.io/pwave-cloud/github-toeplitz-pwave-cloud:41606dbec435edcd252d74e0d28248fd6041e9a1
-        ports:
-        - containerPort: 50051
----
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: pwave-cloud
-  namespace: default
-spec:
-  maxReplicas: 20
-  minReplicas: 2
-  scaleTargetRef:
-    apiVersion: v1
-    kind: ReplicationController
-    name: pwave-cloud
+ rules:
+ - http:
+     paths:
+     - path: /
+       backend:
+         serviceName: pwave-cloud
+         servicePort: 30080
 ---
 apiVersion: v1
 kind: Service

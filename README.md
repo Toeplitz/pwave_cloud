@@ -34,7 +34,8 @@ kubectl describe nodes dwarf
 kubectl get pods --all-namespaces
 
 # ON NODE
-kubeadm join --token e8a09f.c4dfbe610c1a2634 192.168.1.200:6443
+sudo kubeadm join --token 23016a.3c38a611e08a1834 192.168.1.200:6443
+
 
 
 # STARTING POD AND SERVICE
@@ -51,4 +52,6 @@ kubectl logs -f nginx-app-zibvs
 # Guide for auth with GCR
 https://ryaneschinger.com/blog/using-google-container-registry-gcr-with-minikube/
 
+# TEst with echo server
+ curl -d 'foo' 192.168.1.200:30301 -H 'Host: foo.bar.com'
 
