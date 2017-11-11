@@ -105,7 +105,9 @@ int main(int argc, char** argv) {
     // are created. This channel models a connection to an endpoint (in this case,
     // localhost at port 50051). We indicate that the channel isn't authenticated
     // (use of InsecureChannelCredentials()).
-    GreeterClient greeter(grpc::CreateChannel("192.168.1.200:30080", grpc::InsecureChannelCredentials()));
+    /* GreeterClient greeter(grpc::CreateChannel("192.168.1.200:30080", grpc::InsecureChannelCredentials())); */
+    GreeterClient greeter(grpc::CreateChannel("10.11.241.49:30080", grpc::InsecureChannelCredentials()));
+    /* GreeterClient greeter(grpc::CreateChannel("192.168.1.200:80", grpc::InsecureChannelCredentials())); */
 
     // Spawn reader thread that loops indefinitely
     std::thread thread_ = std::thread(&GreeterClient::AsyncCompleteRpc, &greeter);
@@ -114,7 +116,7 @@ int main(int argc, char** argv) {
         std::string user("world " + std::to_string(i));
         printf("sending call %d\n", i);
         greeter.SayHello(user);  // The actual RPC call!
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 
     std::cout << "Press control-c to quit" << std::endl << std::endl;
