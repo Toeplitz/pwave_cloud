@@ -1,0 +1,11 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: reviews-default
+spec:
+  destination:
+    name: helloworld
+  httpReqTimeout:
+    simpleTimeout:
+      timeout: 10000000s
+

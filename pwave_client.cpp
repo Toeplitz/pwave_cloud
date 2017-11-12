@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
   // localhost at port 50051). We indicate that the channel isn't authenticated
   // (use of InsecureChannelCredentials()).
   /* GreeterClient greeter(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials())); */
-  GreeterClient greeter(grpc::CreateChannel("35.188.65.177:50051/hello", grpc::InsecureChannelCredentials()));
+  GreeterClient greeter(grpc::CreateChannel("104.154.238.95:80", grpc::InsecureChannelCredentials()));
   /* GreeterClient greeter(grpc::CreateChannel("104.197.15.119:31140", grpc::InsecureChannelCredentials())); */
 
   for (int i = 0; i < 1000; i++) {

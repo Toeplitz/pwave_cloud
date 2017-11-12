@@ -66,8 +66,8 @@ spec:
   rules:
   - http:
       paths:
-      - path: /hello
         backend:
           serviceName: helloworld
           servicePort: 5000
+        path: /
 ---
