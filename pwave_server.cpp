@@ -43,11 +43,12 @@ class GreeterServiceImpl final : public Greeter::Service
 
     float foo = 0.0;
 
-    for (auto n = 0; n < 900000000; n++) {
+    /* for (auto n = 0; n < 900000000; n++) { */
+    for (auto n = 0; n < 9000000; n++) {
       foo += exp(- 3.14f * n);
     }
 
-    std::string prefix("Hello2" + std::to_string(foo));
+    std::string prefix("Hello2: " + std::to_string(foo));
     reply->set_message(info + prefix + request->name());
     printf("said hello\n");
     return Status::OK;
