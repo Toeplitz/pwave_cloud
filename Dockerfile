@@ -24,7 +24,7 @@ RUN cd /var/local/git/grpc && \
 RUN cd /var/local/git/grpc/third_party/protobuf && \
     make && make install && make clean
 
-RUN mkdir ~/.ssh
+#RUN mkdir ~/.ssh
 #ADD id_rsa /root/.ssh/id_rsa
 #RUN cat $GITHUB_SSH_KEY > /root/.ssh/id_rsa
 
@@ -36,8 +36,8 @@ RUN rm -rf /root/pwave_cloud
 RUN mkdir /root/pwave_cloud
 COPY . /root/pwave_cloud
 RUN cd /root/pwave_cloud && cmake . && make 
-RUN mkdir /pwave_volume
-RUN df -h
+#RUN mkdir /pwave_volume
+#RUN df -h
 
 ENTRYPOINT ["/root/pwave_cloud/pwave_server"]
 
