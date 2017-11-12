@@ -1,0 +1,12 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: ratings-retry
+spec:
+  destination:
+    name: ratings
+  httpReqRetries:
+    simpleRetry:
+      perTryTimeout: 10000s
+      attempts: 100000
+
