@@ -34,7 +34,7 @@ kubectl describe nodes dwarf
 kubectl get pods --all-namespaces
 
 # ON NODE
-sudo kubeadm join --token 23016a.3c38a611e08a1834 192.168.1.200:6443
+kubeadm join --token 079e5b.a38ecca88332c52d 192.168.1.200:6443
 
 
 
@@ -54,4 +54,10 @@ https://ryaneschinger.com/blog/using-google-container-registry-gcr-with-minikube
 
 # TEst with echo server
  curl -d 'foo' 192.168.1.200:30301 -H 'Host: foo.bar.com'
+
+
+sudo docker run -d -v select_vol:/var/lib/mysql --restart=unless-stopped -p 8080:8080 rancher/server
+
+
+https://buoyant.io/2017/04/19/a-service-mesh-for-kubernetes-part-ix-grpc-for-fun-and-profit/
 
