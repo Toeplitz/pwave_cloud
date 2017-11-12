@@ -7,8 +7,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 5000
-    name: http
+  - port: 50051
+    name: grpc
   selector:
     app: helloworld
 ---
@@ -26,35 +26,13 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: istio/examples-helloworld-v1
+        image: gcr.io/pwave-cloud/github-toeplitz-pwave-cloud:b14b148dcdb8a904e9201446cecd96917633553f
         resources:
           requests:
             cpu: "100m"
         imagePullPolicy: IfNotPresent #Always
         ports:
-        - containerPort: 5000
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: helloworld-v2
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: helloworld
-        version: v2
-    spec:
-      containers:
-      - name: helloworld
-        image: istio/examples-helloworld-v2
-        resources:
-          requests:
-            cpu: "100m"
-        imagePullPolicy: IfNotPresent #Always
-        ports:
-        - containerPort: 5000
+        - containerPort: 50051
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -69,5 +47,5 @@ spec:
       - path: /hello
         backend:
           serviceName: helloworld
-          servicePort: 5000
+          servicePort: 50051
 ---
