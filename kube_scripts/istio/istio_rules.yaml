@@ -5,7 +5,14 @@ metadata:
 spec:
   destination:
     name: helloworld
+  route:
+  - labels:
+      version: v1
   httpReqTimeout:
     simpleTimeout:
       timeout: 10000000s
+  httpReqRetries:
+    simpleRetry:
+      perTryTimeout: 1000s
+      attempts: 9999999
 
